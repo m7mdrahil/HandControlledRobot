@@ -140,23 +140,18 @@ void loop() {
 
   // Use sensor data to determine robot movement
   if (Sen1 < 800 && Sen2 > 850 && Sen3 > 850 && Sen4 > 850 && Sen5 > 850) {
-    // If the robot is close to an obstacle in front, but far from obstacles on the sides,
     // move forward
     goAhead();
   } else if (Sen1 < 800 && Sen2 < 800 && Sen3 > 850 && Sen4 > 850 && Sen5 > 850) {
-    // If the robot is close to an obstacle behind, but far from obstacles on the sides,
     // move backward
     goBack();
   } else if (Sen1 < 800 && Sen2 < 800 && Sen3 < 800 && Sen4 > 850 && Sen5 > 850) {
-    // If the robot is close to an obstacle on the left side,
     // turn left
     goLeft();
   } else if (Sen1 < 800 && Sen2 < 800 && Sen3 < 800 && Sen4 < 800 && Sen5 > 850) {
-    // If the robot is close to an obstacle on the right side,
     // turn right
     goRight();
   } else if (Sen1 < 800 && Sen2 < 800 && Sen3 < 800 && Sen4 < 800 && Sen5 < 800) {
-    // If the robot is close to obstacles on all sides,
     // stop moving
     stopRobot();
   }
