@@ -1,39 +1,58 @@
 //This code collects data from analog pins and sends it to the ESP8266 board via Serial communication
-#include<SoftwareSerial.h>
-SoftwareSerial Nodemcu(10,11);
+// Include the SoftwareSerial library for serial communication with the ESP8266
+#include <SoftwareSerial.h>
 
+// Define a new SoftwareSerial object named Nodemcu with pin 10 as RX and pin 11 as TX
+SoftwareSerial Nodemcu(10, 11);
+
+// Define variables to store the analog readings
 int data1, data2, data3, data4, data5, data6;
 
-void setup()
-{
+void setup() {
+  // Begin serial communication with the computer at a baud rate of 57600
   Serial.begin(57600);
+
+  // Begin serial communication with the ESP8266 at a baud rate of 57600
   Nodemcu.begin(57600);
-  
 }
 
-void loop()
-{
-data1 = analogRead(A5);
-data2 = analogRead(A4);
-data3 = analogRead(A3);
-data4 = analogRead(A2);
-data5 = analogRead(A1);
-data6 = analogRead(A0);
-Serial.println("data1 = ");
-Serial.println("data2 = ");
-Serial.println("data3 = ");
-Serial.println("data4 = ");
-Serial.println("data5 = ");
-Serial.println("data6 = ");
-Nodemcu.print(data1); Nodemcu.print("A");
-Nodemcu.print(data2); Nodemcu.print("B");
-Nodemcu.print(data3); Nodemcu.print("C");
-Nodemcu.print(data4); Nodemcu.print("D");
-Nodemcu.print(data5); Nodemcu.print("E");
-Nodemcu.print(data6); Nodemcu.print("F");
-Nodemcu.print("\n");
+void loop() {
+  // Read analog values from pins A5, A4, A3, A2, A1, and A0 and store them in their respective variables
+  data1 = analogRead(A5);
+  data2 = analogRead(A4);
+  data3 = analogRead(A3);
+  data4 = analogRead(A2);
+  data5 = analogRead(A1);
+  data6 = analogRead(A0);
 
-delay(500);
+  // Print the analog values to the serial monitor
+  Serial.print("data1 = ");
+  Serial.println(data1);
+  Serial.print("data2 = ");
+  Serial.println(data2);
+  Serial.print("data3 = ");
+  Serial.println(data3);
+  Serial.print("data4 = ");
+  Serial.println(data4);
+  Serial.print("data5 = ");
+  Serial.println(data5);
+  Serial.print("data6 = ");
+  Serial.println(data6);
 
+  // Send the analog values to the ESP8266 in the following format: "data1Adata2Bdata3Cdata4Ddata5Edata6F\n"
+  Nodemcu.print(data1);
+  Nodemcu.print("A");
+  Nodemcu.print(data2);
+  Nodemcu.print("B");
+  Nodemcu.print(data3);
+  Nodemcu.print("C");
+  Nodemcu.print(data4);
+  Nodemcu.print("D");
+  Nodemcu.print(data5);
+  Nodemcu.print("E");
+  Nodemcu.print(data6);
+  Nodemcu.print("F\n");
 
+  // Wait for 500 milliseconds before looping again
+  delay(500);
 }
